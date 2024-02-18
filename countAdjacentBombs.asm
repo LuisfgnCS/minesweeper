@@ -34,12 +34,12 @@ plus_j:						#}
 	addi $s4, $s4, -1			#   j--;
 sub_j:						# }
 # ----------------------------------------------------------------------------------------------------------------------
-  move $t9, $s3
+  move $s6, $s3
 inicio_for_i:
 	bgt $s1, $s2, final_for_i			# finaliza o laço i
 	#bltz $s1, final_for_j
 	#bge $s1, $s7 final_for_j
-	move $s3, $t9					# reseta j 
+	move $s3, $s6					# reseta j 
    	inicio_for_j:
         	bgt $s3, $s4, final_for_j    		# Finaliza o laço j
 		#bltz $s3, passar
@@ -47,8 +47,8 @@ inicio_for_i:
 			sll $t0, $s1, 5
 			sll $t1, $s3, 2
 			add $t0, $t0, $t1
-			add $s6, $t0, $s0
-        	lw $t0, 0($s6)
+			add $t9, $t0, $s0
+        	lw $t0, 0($t9)
 		bne $t0, -1, passar			# não aumenta o contador se for diferente de -1
 		addi $s5, $s5, 1			# aumenta o contador em 1
 		passar:
